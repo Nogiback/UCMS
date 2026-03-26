@@ -1,0 +1,38 @@
+@model List<UCMS.Models.Course>
+
+@{
+    ViewData["Title"] = "Courses";
+}
+
+<div class="container mt-4">
+    <h2>Available Courses</h2>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Course Code</th>
+                <th>Course Name</th>
+                <th>Instructor</th>
+                <th>Credits</th>
+                <th>Enrolled Students</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var course in Model)
+            {
+                <tr>
+                    <td>@course.CourseCode</td>
+                    <td>@course.CourseName</td>
+                    <td>@course.InstructorName</td>
+                    <td>@course.Credits</td>
+                    <td>@course.StudentCourses.Count</td>
+                    <td>
+                        <a asp-action="Details" asp-route-id="@course.Id" class="btn btn-sm btn-primary">Details</a>
+                        <a asp-action="Delete" asp-route-id="@course.Id" class="btn btn-sm btn-danger">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

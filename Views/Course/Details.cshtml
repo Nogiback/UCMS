@@ -1,0 +1,45 @@
+@model UCMS.Models.Course
+
+@{
+    ViewData["Title"] = "Course Details";
+}
+
+<div class="container mt-4">
+    <div class="card">
+        <div class="card-header bg-primary text-white">
+            <h4>@Model.CourseName (@Model.CourseCode)</h4>
+        </div>
+        <div class="card-body">
+            <dl class="row">
+                <dt class="col-sm-3">Course Code</dt>
+                <dd class="col-sm-9">@Model.CourseCode</dd>
+
+                <dt class="col-sm-3">Description</dt>
+                <dd class="col-sm-9">@Model.Description</dd>
+
+                <dt class="col-sm-3">Instructor</dt>
+                <dd class="col-sm-9">@Model.InstructorName</dd>
+
+                <dt class="col-sm-3">Credits</dt>
+                <dd class="col-sm-9">@Model.Credits</dd>
+
+                <dt class="col-sm-3">Enrolled Students</dt>
+                <dd class="col-sm-9">@Model.StudentCourses.Count</dd>
+            </dl>
+
+            @if (Model.StudentCourses.Any())
+            {
+                <h5 class="mt-4">Enrolled Students:</h5>
+                <ul>
+                    @foreach (var sc in Model.StudentCourses)
+                    {
+                        <li>@sc.Student?.FirstName @sc.Student?.LastName (@sc.Student?.StudentNumber)</li>
+                    }
+                </ul>
+            }
+        </div>
+        <div class="card-footer">
+            <a asp-action="Index" class="btn btn-primary">Back to List</a>
+        </div>
+    </div>
+</div>

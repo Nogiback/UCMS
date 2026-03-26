@@ -1,0 +1,46 @@
+@model UCMS.Models.Student
+
+@{
+    ViewData["Title"] = "Student Profile";
+}
+
+<div class="container mt-4">
+    <div class="card">
+        <div class="card-header bg-success text-white">
+            <h4>Student Profile</h4>
+        </div>
+        <div class="card-body">
+            <dl class="row">
+                <dt class="col-sm-3">Student Number</dt>
+                <dd class="col-sm-9">@Model.StudentNumber</dd>
+
+                <dt class="col-sm-3">Name</dt>
+                <dd class="col-sm-9">@Model.FirstName @Model.LastName</dd>
+
+                <dt class="col-sm-3">Email</dt>
+                <dd class="col-sm-9">@Model.Email</dd>
+
+                <dt class="col-sm-3">Program</dt>
+                <dd class="col-sm-9">@Model.Program</dd>
+            </dl>
+
+            <h5 class="mt-4">Enrolled Courses:</h5>
+            @if (Model.StudentCourses.Any())
+            {
+                <ul>
+                    @foreach (var sc in Model.StudentCourses)
+                    {
+                        <li>@sc.Course?.CourseCode - @sc.Course?.CourseName</li>
+                    }
+                </ul>
+            }
+            else
+            {
+                <p>No courses enrolled yet.</p>
+            }
+        </div>
+        <div class="card-footer">
+            <a asp-action="Index" class="btn btn-primary">Back to List</a>
+        </div>
+    </div>
+</div>

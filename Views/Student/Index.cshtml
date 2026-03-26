@@ -1,0 +1,35 @@
+@model List<UCMS.Models.Student>
+
+@{
+    ViewData["Title"] = "Students";
+}
+
+<div class="container mt-4">
+    <h2>Student Directory</h2>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Student Number</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Program</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var student in Model)
+            {
+                <tr>
+                    <td>@student.StudentNumber</td>
+                    <td>@student.FirstName @student.LastName</td>
+                    <td>@student.Email</td>
+                    <td>@student.Program</td>
+                    <td>
+                        <a asp-action="Profile" asp-route-id="@student.Id" class="btn btn-sm btn-primary">View Profile</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

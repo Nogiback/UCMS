@@ -1,0 +1,20 @@
+﻿@{
+    ViewData["Title"] = "Error";
+}
+
+<div class="container mt-5">
+    <div class="alert alert-danger" role="alert">
+        <h1 class="alert-heading">An Error Occurred</h1>
+        
+        @if (TempData["ErrorMessage"] != null)
+        {
+            <p class="mb-0">@TempData["ErrorMessage"]</p>
+        }
+        else
+        {
+            <p class="mb-0">An unexpected error occurred. Please try again later.</p>
+        }
+    </div>
+
+    <a asp-controller="Home" asp-action="Index" class="btn btn-primary">Return to Home</a>
+</div>
